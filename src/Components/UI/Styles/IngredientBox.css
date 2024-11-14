@@ -1,0 +1,41 @@
+.ingredient-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-left: 10%;
+    border-radius: 20px;
+    margin: 5px auto;  
+    width: 90%;
+    background-color: rgba(245, 243, 231, 0.23); ;
+    color: white;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredient-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ingredient-type {
+    font-size: 12px;
+    color: #b6b6b6;
+}
+
+.trash-icon {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-size: 25px;
+       transition: font-size 0.3s ease, transform 0.3s ease, rgb 0.3s ease;
+}
+
+.trash-icon:hover {
+    color: rgb(43, 43, 43);
+    cursor: pointer;
+    font-size: 28px;
+}
+

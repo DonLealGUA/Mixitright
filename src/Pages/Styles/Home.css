@@ -1,0 +1,253 @@
+.Home {
+    background-image: url('/public/Assets/Home-Background.jpg');
+    height: 100vh;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Inter', sans-serif;
+}
+
+.Content {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.78);
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+
+/**
+    * Left side
+    */
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding-top: 20%;
+}
+
+.Title {
+    font-size: 100px;
+    font-weight: bold;
+    line-height: normal;
+    background: linear-gradient(-90deg,
+            rgba(220, 178, 126, 1) 0%,
+            rgba(156, 120, 64, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+
+.TitleDesc {
+    color: #F5F3E7;
+    font-size: 30px;
+    line-height: normal;
+    font-weight: medium;
+    margin-top: 20px;
+    width: 70%;
+}
+
+.ButtonContainer {
+    margin-top: 100px;
+}
+
+.ButtonText {
+    color: #F5F3E7;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.RandomCocktailButton {
+    background-color: #6B0F1A;
+    width: 378px;
+    height: 96px;
+    border-radius: 20px;
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #74101c;
+    transform: scale(1.01);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+    /**
+    * Right side
+    */
+.right {
+    background-color: rgba(255, 255, 255, 0.014);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding-top: 9%;
+}
+
+.UserInputArea {
+    background-color: #000000a6;
+    height: 91%;
+    width: 60%;
+    border-radius: 20px;
+}
+
+.InputAreaTitle{
+    margin-top: 5%;
+    margin-bottom: 1%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.UserIngredientInput {
+    display: flex;
+    flex-direction: row;  
+    align-items: center;     
+    justify-content: center;
+    gap: 10px;               
+    text-align: center;     
+    margin-bottom: 2%; 
+  }
+
+input[type="text"]{
+    width: 400px;
+    height: 51px;
+    border-radius: 20px;
+    padding-left: 5%;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ingredientSelect{
+    width: 135px;
+    height: 51px;
+    padding-left: 5px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #2E4A42;
+    color: white;
+    text-align: center;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.AddIngredientButton{
+    color: white;
+    width: 68px;
+    height: 51px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    background-color: #6B0F1A;
+}
+
+/*
+User choice
+*/
+.UserChoiceContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center; 
+  }
+  
+  .UserChoiceContainer p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .SpacewithSlash {
+    color: white;
+    font-size: 20px;
+  }
+  
+  .UserChoiceContainer label {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    transition: font-size 0.3s ease; 
+  }
+  
+  .UserChoiceContainer .bigger-text {
+    font-size: 24px; 
+    background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%);
+    -webkit-background-clip: text; 
+    color: transparent; 
+  }
+  
+  .UserChoiceContainer input[type="radio"] {
+    display: none;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+  
+  .UserChoiceContainer label:hover {
+    color: #D4AF37;
+  }
+  
+
+    /*
+    User inputed text
+    */
+    .UserIngredientShowArea {
+      justify-content: center;   
+      width: 100%;
+      height: 64%;
+      margin: 2% 0 3% 0;
+      flex-direction: column;  
+      align-items: center;
+      overflow-y: auto;       
+      overflow-x: hidden;
+      max-height: 500px;
+      scrollbar-width: thin;
+    scrollbar-color: rgba(90, 143, 123, 0.5) transparent; 
+  }
+
+  /* Better looking scrollbar*/
+  .UserIngredientShowArea::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.UserIngredientShowArea::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.UserIngredientShowArea::-webkit-scrollbar-thumb {
+    background-color: rgba(90, 143, 123, 0.5); 
+    border-radius: 10px; 
+}
+
+.UserIngredientShowArea::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(90, 143, 123, 0.8); 
+}
+
+
+    /*
+    Mix it toghter button
+    */
+.UserIngredientsButton{
+    background-color: #6B0F1A;
+    width: 45%;
+    height: 47px;
+    border-radius: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
