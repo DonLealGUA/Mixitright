@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
+.Browse {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.Content {
+    width: 92%; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; 
+    background-color: #F5F3E7;
+    margin: 3% 0;
+    padding-bottom: 3%;
+    border-radius: 20px;
+
+}
+
+.SpiritsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: -1%;
+    background-color: #2E4A42;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: 20px;
+}
+
+.SpiritsTitle {
+    font-family: 'Inria Serif', serif;
+    color: #B68934;
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.Decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Decoration::before,
+.Decoration::after {
+    content: "";
+    width: 200px; 
+    height: 3px; 
+    background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%); 
+}
+
+.Decoration::after {
+    background: linear-gradient(90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%); 
+}
+
+.Decoration .circle {
+    width: 14px; 
+    height: 14px;
+    background-color: #B68934; 
+    border-radius: 50%;
+    margin: 0 20px; 
+}
+
+.BrowseContent {
+    padding: 10px;
+}
