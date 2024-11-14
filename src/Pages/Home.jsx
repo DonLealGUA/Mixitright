@@ -8,6 +8,7 @@ const Home = () => {
   const [ingredientName, setIngredientName] = useState("");
   const [ingredientType, setIngredientType] = useState("ingredient");
   const [ingredients, setIngredients] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleRadioChange = (e) => {
     setSelectedOption(e.target.value);
@@ -20,6 +21,11 @@ const Home = () => {
       // Clear input fields after adding
       setIngredientName("");
       setIngredientType("ingredient");
+      // Clear error message if any
+      setErrorMessage("");
+    } else {
+      // Set error message if the input field is empty
+      setErrorMessage("Please enter an ingredient or spirit.");
     }
   };
 
@@ -63,6 +69,8 @@ const Home = () => {
                 Add
               </button>
             </div>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+
             <div className="UserChoiceContainer">
               <p>Include only EXACT ingredients?</p>
               <label className={`choice-label ${selectedOption === "yes" ? "bigger-text" : ""}`}>
