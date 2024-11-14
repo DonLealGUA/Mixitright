@@ -1,0 +1,69 @@
+.ingredient-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9; 
+    border: 1px solid #B68934;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 16px;
+    margin: 16px;
+    width: 300px; 
+    height: 420px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.ingredient-box:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+.InnerBorder {
+    border: 2px solid #B68934;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 16px;
+    text-align: center; 
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.cocktail-name {
+    color: #3C3C3C;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Inria Serif', serif;
+    text-align: center;
+    padding: 8px;
+    margin-top: 10px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 100%; 
+    transition: font-size 0.3s ease; 
+}
+
+/* On hover, show full text and change font size */
+.ingredient-box:hover .cocktail-name {
+    white-space: normal;
+    font-size: 1.2rem; 
+}
+
+.text-container img {
+    max-width: 100%;
+    max-height: 300px; 
+    object-fit: contain;
+    border-radius: 20px; 
+}

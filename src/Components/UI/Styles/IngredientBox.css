@@ -30,7 +30,7 @@
     color: rgb(0, 0, 0);
     cursor: pointer;
     font-size: 25px;
-       transition: font-size 0.3s ease, transform 0.3s ease, rgb 0.3s ease;
+    transition: font-size 0.3s ease, transform 0.3s ease, rgb 0.3s ease;
 }
 
 .trash-icon:hover {

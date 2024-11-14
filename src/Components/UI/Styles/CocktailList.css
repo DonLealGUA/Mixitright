@@ -1,0 +1,10 @@
+.cocktail-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 5px; 
+  justify-items: center; 
+}
+
+.cocktail-item {
+  width: 100%; 
+}
