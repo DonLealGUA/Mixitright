@@ -19,9 +19,8 @@ const Browse = () => {
     { id: 2, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
     { id: 2, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
     { id: 2, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    
-    // Add more ingredients as needed
 ]);
+
   return (
     <div className="Browse">
       <div className="Content">

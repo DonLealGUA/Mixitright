@@ -4,11 +4,12 @@ import '@fontsource/inter/700.css';
 import Home from './Pages/Home'
 import Browse from './Pages/Browse';  
 import Search from './Pages/Search'
+import Cocktail from './Pages/Cocktail'
 
 function App() {
   return (
     <div className="App">
-     <Search/>
+     <Cocktail />
     </div>
   );
 }

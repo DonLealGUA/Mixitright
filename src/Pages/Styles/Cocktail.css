@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .Browse {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ensure content starts from top */
+    align-items: center;
+  }
+  
+  .Content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    width: 80%;
+    margin: 3% 0;
+    border-radius: 20px;
+    background-color: #F5F3E7;
+    padding-bottom: 50px;  
+
+ 
+  }
+  
+  .ImageCorner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 30px;  
+  }
+  
+  .ImageCorner img {
+    width: 577px;
+    height: 536px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 2px solid #B68934;
+  }
+  
+  .RecepieInfo {
+    background-color: #F5F3E7; 
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: relative; 
+}
+
+.DisplayInfo {
+    background-color: #F5F3E7; 
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.SaveRecipeButton {
+    background-color: #8B1C1C; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 10px;  
+    right: 10px;  
+    z-index: 1; 
+}
+
+.CocktailName {
+    font-size: 5em;
+    font-weight: bold;
+    color: #4B4B4B;
+    text-align: center;
+}
+
+.CocktailIngreidentAmount,
+.CocktailGlassType {
+    font-size: 1.2em;
+    color: #000000;
+    text-align: center; 
+}
+
+.CocktailRelated h2 {
+    font-size: 1.5em;
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center; 
+}
+
+.CategoryButtons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.CategoryButton {
+    background-color: #2E4A42; 
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.CategoryButton:hover {
+    background-color: #355e52; 
+}
+  
+  .IngredientsContent,
+  .RecepieContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .TitleContainer {
+    width: 80%;
+    background-color: #3C3C3C;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+  }
+  
+  .IngredientTitle,
+  .InstructionsTitle {
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .RecipeConent {
+    width: 80%;
+    min-height: 90%;
+  }
+  
+  .InstructionsConent {
+    width: 80%;
+    background-color: #F5F3E7;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    min-height: 70%;
+  }
+  
+  .RecommendedCocktails {
+    background-color: #F5F3E7;
+    height: 40vh;
+    width: 92%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 10%;
+  }
+  
+  .CategoryButtons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .CategoryButton {
+    background-color: #2E4A42;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  
+  .CategoryButton:hover {
+    background-color: #355e52;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .Content {
+      grid-template-columns: 1fr;
+    }
+  }
+  
