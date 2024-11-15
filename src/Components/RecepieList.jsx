@@ -7,8 +7,8 @@ const RecepieList = ({ ingredients }) => {
       {ingredients.map((ingredient, index) => (
         <RecepieBox
           key={index}
-          ingredientName={ingredient.name}
-          ingredientType={ingredient.type}
+          ingredientName={ingredient.ingredientName || ingredient.spiritTypeName} 
+          ingredientquantity={ingredient.quantity}
         />
       ))}
     </div>

@@ -2,15 +2,15 @@ import React from "react";
 import CocktailItem from "./CocktailItem";
 import './UI/Styles/CocktailList.css';
 
-const CocktailList = ({ ingredients, onCocktailClick }) => {
+const CocktailList = ({ Cocktails, onCocktailClick }) => {
   return (
     <div className="cocktail-list">
-      {ingredients.map((ingredient, index) => (
+      {Cocktails.map((Cocktail, index) => (
         <CocktailItem 
           key={index}
-          ingredientName={ingredient.name}
-          ingredientType={ingredient.type}
-          onCocktailClick={onCocktailClick} // Pass click handler
+          CocktailName={Cocktail.name}
+          Image={Cocktail.imageUrl}
+          onCocktailClick={onCocktailClick} 
         />
       ))}
     </div>

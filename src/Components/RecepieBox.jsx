@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './UI/Styles/RecepieBox.css';
 
-const RecepieBox = ({ ingredientName, ingredientType }) => {
-  // State to track whether the item is crossed out
+const RecepieBox = ({ ingredientName, ingredientquantity }) => {
   const [isCrossedOut, setIsCrossedOut] = useState(false);
 
-  // Toggle the crossed-out state when clicked
   const toggleCrossOut = () => {
     setIsCrossedOut(!isCrossedOut);
   };
@@ -13,9 +11,8 @@ const RecepieBox = ({ ingredientName, ingredientType }) => {
   return (
     <div className="recepie-box" onClick={toggleCrossOut}>
       <div className="text-container">
-        {/* Add a conditional class for crossing out */}
-        <span className={`ingredient-type ${isCrossedOut ? 'crossed-out' : ''}`}>
-          {ingredientType}
+        <span className={`ingredient-quantity ${isCrossedOut ? 'crossed-out' : ''}`}>
+          {ingredientquantity}
         </span>
         <span className={`ingredient-name ${isCrossedOut ? 'crossed-out' : ''}`}>
           {ingredientName}

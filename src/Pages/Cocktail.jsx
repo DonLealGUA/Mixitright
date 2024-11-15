@@ -1,47 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Styles/Cocktail.css";
 import RecepieList from '../Components/RecepieList';
 import CocktailItem from '../Components/CocktailItem';
+import { fetchMojitoData, fetchMockData } from "../API/mockApi"; 
 
 const Cocktail = () => {
-  const [cocktails] = useState([
-    { id: 1, name: "Vodka", img: "/Assets/SpiritIcons/Screenshot_5.jpg" },
-  ]);
+  const [cocktails, setCocktails] = useState([]);
+  const [RecomendedCocktails, setRecomendedCocktails] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  const [categories] = useState([
-    { name: "Vodka", type: "Spirit" },
-    { name: "Rum", type: "Spirit" },
-    { name: "Gin", type: "Spirit" },
-    { name: "Highball", type: "Glass" },
-    { name: "Long Glass", type: "Glass" },
-    { name: "Brandy", type: "Spirit" },
-    { name: "Whiskey", type: "Spirit" },
-  ]);
+  useEffect(() => {
+    const getMockData = async () => {
+      const mockData = await fetchMojitoData();
+      const mockDataOfCoktails = await fetchMockData();
+      setCocktails(mockData.data);
+      setRecomendedCocktails(mockDataOfCoktails.data);
+    };
 
-  const [ingredients, setIngredients] = useState([
-    { id: 1, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 2, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 3, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
+    getMockData();
+  }, []);
 
-  ]);
+  useEffect(() => {
+    if (cocktails.length > 0) {
+      const cocktail = cocktails[0];
+      const ingredientNames = cocktail.ingredients?.map(ingredient => ingredient.ingredientName).filter(Boolean);
+
+      const newCategories = [
+        { name: cocktail.glassType }, 
+        ...cocktail.spiritTypes?.map(spirit => ({ name: spirit })), 
+        ...ingredientNames?.map(ingredient => ({ name: ingredient })), 
+      ];
+
+      setCategories(newCategories);
+    }
+  }, [cocktails]);
 
   return (
     <div className="Browse">
       <div className="Content">
         <div className="ImageCorner">
-          <img src={cocktails[0].img} alt={cocktails[0].name} />
+          <img src={cocktails[0]?.imageUrl} alt={cocktails[0]?.name} />
         </div>
 
         <div className="RecepieInfo">
           <button className="SaveRecipeButton">Save</button>
           <div className="DisplayInfo">
-            <h1 className="CocktailName">Mojito</h1>
-            <h2 className="CocktailIngreidentAmount">4 Ingredients</h2>
-            <h2 className="CocktailGlassType">Glass type: Highball</h2>
+            <h1 className="CocktailName">{cocktails[0]?.name}</h1>
+            <h2 className="CocktailIngreidentAmount">Ingredients: {cocktails[0]?.ingredients?.length}</h2>
+            <h2 className="CocktailGlassType">Glass type: {cocktails[0]?.glassType}</h2>
             <div className="CocktailRelated">
               <h2>Related Categories:</h2>
               <div className="CategoryButtons">
-                {categories.map((category, index) => (
+                {categories.length > 0 && categories.map((category, index) => (
                   <button key={index} className="CategoryButton">
                     {category.name}
                   </button>
@@ -57,7 +67,9 @@ const Cocktail = () => {
           </div>
 
           <div className="RecipeConent">
-            <RecepieList ingredients={ingredients} />
+            {cocktails[0]?.ingredients?.length > 0 && (
+              <RecepieList ingredients={cocktails[0]?.ingredients} />
+            )}
           </div>
         </div>
 
@@ -67,19 +79,23 @@ const Cocktail = () => {
           </div>
 
           <div className="InstructionsConent">
-            {/* Instructions content */}
+            {cocktails[0]?.instructions}
           </div>
         </div>
       </div>
 
       <div className="RecommendedCocktails">
-         {ingredients.map((ingredient, index) => (
-        <CocktailItem 
-          key={index}
-          ingredientName={ingredient.name}
-          ingredientType={ingredient.type}
-        />
-      ))}
+        {RecomendedCocktails?.length > 0 ? (
+          RecomendedCocktails.map((ingredient, index) => (
+            <CocktailItem 
+              key={index}
+              CocktailName={ingredient.name}
+              Image={ingredient.imageUrl}
+            />
+          ))
+        ) : (
+          <p>No recommended cocktails available.</p>
+        )}
       </div>
     </div>
   );

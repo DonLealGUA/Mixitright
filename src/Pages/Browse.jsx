@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import navigate hook
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./Styles/Browse.css";
 import CocktailList from '../Components/CocktailList';
+import { fetchMockData } from "../API/mockApi"; 
 
 const Browse = () => {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
   const [Spirits, setSprit] = useState([
     { id: 1, name: "Vodka", img: "/Assets/SpiritIcons/Vodka.png" },
     { id: 2, name: "Rum", img: "/Assets/SpiritIcons/rum.png" },
@@ -14,23 +15,25 @@ const Browse = () => {
     { id: 6, name: "Cognac", img: "/Assets/SpiritIcons/cognac.png" },
   ]);
 
-  const [ingredients, setIngredients] = useState([
-    { id: 1, name: 'Frozen Pineapple Mango Daiquiri', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 2, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 3, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 4, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-  ]);
+  const [ingredients, setIngredients] = useState([]); 
+
+  useEffect(() => {
+    const getMockData = async () => {
+      const mockData = await fetchMockData();
+      setIngredients(mockData.data); 
+    };
+
+    getMockData();
+  }, []); 
 
   const handleSpiritClick = (spirit) => {
-    // Navigate to the search page for the selected spirit
     navigate(`/search/${spirit.name.toLowerCase()}`);
   };
 
   const handleCocktailClick = (cocktailName) => {
-    // Simulate an API call and then navigate to the cocktail page
     setTimeout(() => {
       navigate(`/cocktail/${cocktailName}`);
-    }, 1000); // Simulate a 1-second delay for the "API call"
+    }, 1000);
   };
 
   return (
@@ -65,8 +68,8 @@ const Browse = () => {
 
           <div className="BrowseContet">
             <CocktailList
-              ingredients={ingredients}
-              onCocktailClick={handleCocktailClick} // Pass handler to CocktailList
+              Cocktails={ingredients}
+              onCocktailClick={handleCocktailClick} 
             />
           </div>
         </div>

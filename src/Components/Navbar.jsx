@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
+import { useNavigate } from 'react-router-dom'; 
 import './UI/Styles/Navbar.css';
 
 const Navbar = ({ currentPage }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate(); // Create navigate function from useNavigate
+  const navigate = useNavigate(); 
 
   const handlePageChange = (page) => {
-    // If page is 'home', navigate to the root "/"
     const route = page === 'home' ? '/' : `/${page}`;
-    navigate(route); // Navigate to the appropriate route
-    setDropdownOpen(false); // Close dropdown when navigating
+    navigate(route); 
+    setDropdownOpen(false); 
   };
 
   const categories = {
@@ -24,21 +23,20 @@ const Navbar = ({ currentPage }) => {
   const handleSearch = () => {
     const query = searchTerm.trim();
     if (query) {
-      handlePageChange(`search?query=${encodeURIComponent(query)}`); // Use navigate for search query
+      handlePageChange(`search/${encodeURIComponent(query)}`); 
     }
   };
 
   const handleCategoryItemClick = (category, item) => {
-    handlePageChange(`search/${item}`); // Navigate to /search/{item}
+    handlePageChange(`search/${item}`); 
   };
 
   return (
     <nav className="bg-[#2E4A42] py-4">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
         <div className="flex items-center">
           <button
-            onClick={() => handlePageChange('home')} // Navigate to home (root)
+            onClick={() => handlePageChange('home')} 
             className="text-3xl font-bold hover:opacity-80"
             style={{
               background: 'linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%)',
@@ -50,7 +48,6 @@ const Navbar = ({ currentPage }) => {
           </button>
         </div>
 
-        {/* Center Navigation */}
         <div className="flex items-center space-x-12 text-2xl text-[#F5F3E7]">
           {/* Home */}
           <button

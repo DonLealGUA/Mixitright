@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
+import { useNavigate } from "react-router-dom"; 
 import "./Styles/Home.css";
 import IngredientList from "../Components/IngredientList";
 
@@ -11,7 +11,6 @@ const Home = () => {
   const [ingredients, setIngredients] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Initialize useNavigate for navigation
   const navigate = useNavigate();
 
   const handleRadioChange = (e) => {
@@ -35,13 +34,10 @@ const Home = () => {
     setIngredients(updatedIngredients);
   };
 
-  // Handle random cocktail button click
   const handleRandomCocktail = () => {
-    // Simulate an API call with setTimeout
     setTimeout(() => {
-      // Navigate to /cocktails/mojito after the "API call"
       navigate("/cocktail/mojito");
-    }, 1000); // Fake delay of 1 second
+    }, 1000); 
   };
 
   return (
