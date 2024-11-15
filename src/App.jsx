@@ -1,38 +1,29 @@
 import './App.css';
 import React, { useState } from 'react';
 import '@fontsource/inter/400.css';
-import '@fontsource/inter/700.css'; 
-import Home from './Pages/Home'
-import Browse from './Pages/Browse';  
-import Search from './Pages/Search'
-import Cocktail from './Pages/Cocktail'
+import '@fontsource/inter/700.css';
+import Home from './Pages/Home';
+import Browse from './Pages/Browse';
+import Search from './Pages/Search';
+import Cocktail from './Pages/Cocktail';
 import Navbar from './Components/Navbar';
+
+// Importing necessary components from react-router-dom
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
-  const renderComponent = () => {
-    switch (currentPage) {
-      case 'home':
-        return <Home setCurrentPage={setCurrentPage} />; 
-      case 'browse':
-        return <Browse/>;
-        case 'search':
-          return <Search />;
-      case 'cocktail':
-        return <Cocktail/>;
-      default:
-        return <Home />;
-    }
-  };
-  
   return (
-    <div className="home">
+    <Router>
       <Navbar setCurrentPage={setCurrentPage} currentPage={currentPage} />
-      <div className="content">
-        {renderComponent()}
-      </div>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home setCurrentPage={setCurrentPage} />} />
+        <Route path="/browse" element={<Browse />} />
+        <Route path="/search/:item" element={<Search />} />
+        <Route path="/cocktail/:id" element={<Cocktail />} />
+      </Routes>
+    </Router>
   );
 }
 

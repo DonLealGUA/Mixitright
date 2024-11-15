@@ -1,14 +1,13 @@
 import React from 'react';
-import './UI/Styles/CocktailItem.css'
+import './UI/Styles/CocktailItem.css';
 
-const CocktailItem = ({ ingredientName, ingredientType}) => {
+const CocktailItem = ({ ingredientName, ingredientType, onCocktailClick }) => {
     return (
-        <div className="cocktail-box">
+        <div className="cocktail-box" onClick={() => onCocktailClick(ingredientName)}>
             <div className="cocktailtext-container">
-                <img src={ingredientType} alt={ingredientType}/>
+                <img src={ingredientType} alt={ingredientType} />
                 <span className="cocktail-name">{ingredientName}</span>
             </div>
-          
         </div>
     );
 };

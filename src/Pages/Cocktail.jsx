@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Styles/Cocktail.css";
 import RecepieList from '../Components/RecepieList';
-import CocktailItem from '../Components/CocktailItem'
+import CocktailItem from '../Components/CocktailItem';
 
 const Cocktail = () => {
   const [cocktails] = useState([

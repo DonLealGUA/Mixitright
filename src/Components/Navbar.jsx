@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 import './UI/Styles/Navbar.css';
 
-const Navbar = ({ setCurrentPage, currentPage }) => {
+const Navbar = ({ currentPage }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate(); // Create navigate function from useNavigate
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
+    // If page is 'home', navigate to the root "/"
+    const route = page === 'home' ? '/' : `/${page}`;
+    navigate(route); // Navigate to the appropriate route
     setDropdownOpen(false); // Close dropdown when navigating
   };
 
@@ -20,12 +24,12 @@ const Navbar = ({ setCurrentPage, currentPage }) => {
   const handleSearch = () => {
     const query = searchTerm.trim();
     if (query) {
-      handlePageChange(`search?query=${encodeURIComponent(query)}`);
+      handlePageChange(`search?query=${encodeURIComponent(query)}`); // Use navigate for search query
     }
   };
 
   const handleCategoryItemClick = (category, item) => {
-    handlePageChange(`search?category=${category.toLowerCase()}&item=${item.toLowerCase()}`);
+    handlePageChange(`search/${item}`); // Navigate to /search/{item}
   };
 
   return (
@@ -34,7 +38,7 @@ const Navbar = ({ setCurrentPage, currentPage }) => {
         {/* Logo */}
         <div className="flex items-center">
           <button
-            onClick={() => handlePageChange('home')}
+            onClick={() => handlePageChange('home')} // Navigate to home (root)
             className="text-3xl font-bold hover:opacity-80"
             style={{
               background: 'linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%)',
@@ -51,11 +55,7 @@ const Navbar = ({ setCurrentPage, currentPage }) => {
           {/* Home */}
           <button
             onClick={() => handlePageChange('home')}
-            className={`transition-all duration-300 ${
-              currentPage === 'home'
-                ? 'font-bold text-2xl' // Ensure selected button stays the same size
-                : 'hover:opacity-80'
-            }`}
+            className={`transition-all duration-300 ${currentPage === 'home' ? 'font-bold text-2xl' : 'hover:opacity-80'}`}
           >
             Home
           </button>
@@ -63,11 +63,7 @@ const Navbar = ({ setCurrentPage, currentPage }) => {
           {/* Browse */}
           <button
             onClick={() => handlePageChange('browse')}
-            className={`transition-all duration-300 ${
-              currentPage === 'browse'
-                ? 'font-bold text-2xl' // Ensure selected button stays the same size
-                : 'hover:opacity-80'
-            }`}
+            className={`transition-all duration-300 ${currentPage === 'browse' ? 'font-bold text-2xl' : 'hover:opacity-80'}`}
           >
             Browse
           </button>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
 import "./Styles/Home.css";
 import IngredientList from "../Components/IngredientList";
 
@@ -9,6 +10,9 @@ const Home = () => {
   const [ingredientType, setIngredientType] = useState("ingredient");
   const [ingredients, setIngredients] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Initialize useNavigate for navigation
+  const navigate = useNavigate();
 
   const handleRadioChange = (e) => {
     setSelectedOption(e.target.value);
@@ -27,8 +31,17 @@ const Home = () => {
 
   const handleDeleteIngredient = (index) => {
     const updatedIngredients = [...ingredients];
-    updatedIngredients.splice(index, 1); 
-    setIngredients(updatedIngredients); 
+    updatedIngredients.splice(index, 1);
+    setIngredients(updatedIngredients);
+  };
+
+  // Handle random cocktail button click
+  const handleRandomCocktail = () => {
+    // Simulate an API call with setTimeout
+    setTimeout(() => {
+      // Navigate to /cocktails/mojito after the "API call"
+      navigate("/cocktail/mojito");
+    }, 1000); // Fake delay of 1 second
   };
 
   return (
@@ -41,7 +54,9 @@ const Home = () => {
           </p>
           <div className="ButtonContainer">
             <p className="ButtonText">Generate a random cocktail</p>
-            <button className="RandomCocktailButton">Feel lucky</button>
+            <button className="RandomCocktailButton" onClick={handleRandomCocktail}>
+              Feel lucky
+            </button>
           </div>
         </div>
 
