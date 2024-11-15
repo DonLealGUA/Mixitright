@@ -20,7 +20,7 @@ const Search = () => {
 
   return (
     <div className="Browse">
-      <div className="Content">
+      <div className="SearchContent">
         <div className="UpperContent">
           <div class="SpiritsHeader">
             <div class="SpiritsTitle">{BrowseCategory}</div>

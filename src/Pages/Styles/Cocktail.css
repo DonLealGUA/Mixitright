@@ -9,7 +9,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Ensure content starts from top */
+    justify-content: flex-start; 
     align-items: center;
   }
   
@@ -85,6 +85,12 @@
     top: 10px;  
     right: 10px;  
     z-index: 1; 
+}
+
+.SaveRecipeButton :hover {
+  background-color: #74101c;
+  transform: scale(1.01);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
 }
 
 .CocktailName {
@@ -169,20 +175,7 @@
     min-height: 70%;
   }
   
-  .RecommendedCocktails {
-    background-color: #F5F3E7;
-    height: 40vh;
-    width: 92%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.5em;
-    text-align: center;
-    border-radius: 20px;
-    margin-bottom: 10%;
-  }
-  
+
   .CategoryButtons {
     display: flex;
     gap: 10px;
@@ -203,6 +196,20 @@
   
   .CategoryButton:hover {
     background-color: #355e52;
+  }
+
+  .RecommendedCocktails {
+    background-color: #F5F3E7;
+    height: 50vh;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 10%;
   }
   
   /* Responsiveness */

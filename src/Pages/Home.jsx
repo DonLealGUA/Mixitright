@@ -16,22 +16,24 @@ const Home = () => {
 
   const handleAddIngredient = () => {
     if (ingredientName.trim()) {
-      // Add the new ingredient to the list
       setIngredients([...ingredients, { name: ingredientName, type: ingredientType }]);
-      // Clear input fields after adding
       setIngredientName("");
       setIngredientType("ingredient");
-      // Clear error message if any
       setErrorMessage("");
     } else {
-      // Set error message if the input field is empty
       setErrorMessage("Please enter an ingredient or spirit.");
     }
   };
 
+  const handleDeleteIngredient = (index) => {
+    const updatedIngredients = [...ingredients];
+    updatedIngredients.splice(index, 1); 
+    setIngredients(updatedIngredients); 
+  };
+
   return (
     <div className="Home">
-      <div className="Content">
+      <div className="HomeContent">
         <div className="left">
           <h1 className="Title">Welcome to MixItRight</h1>
           <p className="TitleDesc">
@@ -97,8 +99,7 @@ const Home = () => {
             </div>
 
             <div className="UserIngredientShowArea">
-              {/* Pass the ingredients to IngredientList */}
-              <IngredientList ingredients={ingredients} />
+              <IngredientList ingredients={ingredients} onDeleteIngredient={handleDeleteIngredient} />
             </div>
             <div className="UserInputButtonArea">
               <button className="UserIngredientsButton">Mix it Together</button>

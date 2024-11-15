@@ -11,7 +11,7 @@ const RecepieBox = ({ ingredientName, ingredientType }) => {
   };
 
   return (
-    <div className="ingredient-box" onClick={toggleCrossOut}>
+    <div className="recepie-box" onClick={toggleCrossOut}>
       <div className="text-container">
         {/* Add a conditional class for crossing out */}
         <span className={`ingredient-type ${isCrossedOut ? 'crossed-out' : ''}`}>

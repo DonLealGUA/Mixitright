@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Styles/Cocktail.css";
 import RecepieList from '../Components/RecepieList';
+import CocktailItem from '../Components/CocktailItem'
 
 const Cocktail = () => {
   const [cocktails] = useState([
@@ -21,11 +22,6 @@ const Cocktail = () => {
     { id: 1, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
     { id: 2, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
     { id: 3, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 4, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 5, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 6, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 7, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
-    { id: 8, name: 'Mojito', type: '/Assets/SpiritIcons/Screenshot_5.jpg' },
 
   ]);
 
@@ -77,7 +73,13 @@ const Cocktail = () => {
       </div>
 
       <div className="RecommendedCocktails">
-        {/* Recommended cocktails content */}
+         {ingredients.map((ingredient, index) => (
+        <CocktailItem 
+          key={index}
+          ingredientName={ingredient.name}
+          ingredientType={ingredient.type}
+        />
+      ))}
       </div>
     </div>
   );

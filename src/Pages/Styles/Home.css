@@ -8,7 +8,7 @@
     font-family: 'Inter', sans-serif;
 }
 
-.Content {
+.HomeContent {
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.78);
@@ -73,7 +73,7 @@
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
+.RandomCocktailButton:hover {
     background-color: #74101c;
     transform: scale(1.01);
     box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
@@ -150,6 +150,13 @@ input[type="text"]{
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
     background-color: #6B0F1A;
 }
+
+.AddIngredientButton:hover {
+    background-color: #74101c;
+    transform: scale(1.01);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}
+
 
 /*
 User choice
@@ -253,5 +260,11 @@ User choice
     color: white;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.UserIngredientsButton:hover {
+    background-color: #74101c;
+    transform: scale(1.01);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
 }
 

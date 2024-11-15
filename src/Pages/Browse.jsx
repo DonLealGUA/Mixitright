@@ -23,7 +23,7 @@ const Browse = () => {
 
   return (
     <div className="Browse">
-      <div className="Content">
+      <div className="BrowseContent">
         <div className="UpperContent">
           <div class="SpiritsHeader">
             <div class="SpiritsTitle">Browse by Spirits</div>
