@@ -1,29 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
 .Browse {
     font-family: 'Inter', sans-serif;
-    min-height: 100vh; 
+    min-height: 100vh;
     display: flex;
-    justify-content: center; 
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start; 
     margin-top: 3%; 
 }
 
 .BrowseContent {
-    height: auto; 
-    width: 92%; 
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start;
-    background-color: #F5F3E7;
-    margin-top: 3%;
+    width: 92%;
+    margin-top: 3%; 
     margin-bottom: 3%;
     padding-bottom: 3%;
+    background-color: #F5F3E7;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.UpperContent{
+.UpperContent {
     width: 100%;
-    height: 40%; 
+    height: 40%;
 }
 
 .SpiritsHeader {
@@ -33,10 +33,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: -1%;
+    margin-bottom: 1%;
 }
 
-.SpiritsTitle,.BrowseTitle {
+.SpiritsTitle, .BrowseTitle {
     font-family: 'Inria Serif', serif;
     color: #000000;
     font-size: 64px;
@@ -52,48 +52,47 @@
 .Decoration::before,
 .Decoration::after {
     content: "";
-    width: 200px; 
-    height: 3px; 
-    background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%); 
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%);
 }
 
 .Decoration::after {
-    background: linear-gradient(90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%); 
+    background: linear-gradient(90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%);
 }
 
 .Decoration .circle {
-    width: 14px; 
+    width: 14px;
     height: 14px;
-    background-color: #B68934; 
+    background-color: #B68934;
     border-radius: 50%;
-    margin: 0 20px; 
+    margin: 0 20px;
 }
 
 .SpiritSelection {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 16px; 
-    justify-content: center; 
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
     padding: 20px;
+    justify-items: center;
 }
 
 .SpiritCard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
     border: 1px solid #B68934;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    margin: 16px;
-    width: 200px;
     transition: transform 0.3s ease;
     cursor: pointer;
+    width: 100%; 
 }
 
 .SpiritCard:hover {
-    transform: translateY(-5px); 
+    transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     color: #B68934;
 }
@@ -112,21 +111,6 @@
     z-index: 1;
 }
 
-.SpiritCard:hover::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    background-color: #B68934;
-    mix-blend-mode: screen;
-    z-index: 2;
-    pointer-events: none;
-}
-
-
 .SpiritCard h2 {
     font-size: 18px;
     color: #333;
@@ -135,29 +119,27 @@
     font-family: 'Inria Serif', serif;
 }
 
-.SpiritCard:hover  h2{
+.SpiritCard:hover h2 {
     font-size: 20px;
     font-weight: bolder;
 }
 
-
 .InnerBorder {
     border: 2px solid #B68934;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 16px;
-    text-align: center; 
+    text-align: center;
 }
 
-
-.LowerContent{
+.LowerContent {
     width: 100%;
     height: 60%;
 }
 
-.ContetHeader{
+.ContetHeader {
     width: 100%;
     height: 30%;
     display: flex;
@@ -167,6 +149,137 @@
     margin-top: -1.6%;
 }
 
-.BrowseContet{
+.BrowseContet {
     padding: 10px;
 }
+
+/* Media Queries for Responsive Layout */
+@media (min-width: 1200px) {
+    .SpiritSelection {
+        grid-template-columns: repeat(6, 1fr); 
+    }
+}
+
+@media (max-width: 1450px) {
+
+    .BrowseContent{
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .SpiritSelection {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+}
+
+@media (max-width: 1050px) {
+    .BrowseContent{
+        margin-top: 7%;
+    }
+}
+
+@media (max-width: 900px) {
+    .SpiritSelection {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+    .BrowseContent{
+        margin-top: 10%;
+    }
+
+    .SpiritsHeader .SpiritsTitle, .BrowseTitle {
+        font-size: 55px;
+    }
+}
+
+
+@media (max-width: 630px) {
+    .SpiritsHeader .SpiritsTitle, .BrowseTitle {
+        font-size: 43px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .SpiritSelection {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .BrowseContent{
+        margin-top: 13%;
+    }
+
+  
+
+    .SpiritCard {
+        width: 90%; 
+        margin: 5px auto; 
+        padding: 12px; 
+    }
+
+    .SpiritCard img {
+        width: 80%; 
+    }
+}
+
+@media (max-width: 535px) {
+    .SpiritsHeader .SpiritsTitle, .BrowseTitle {
+        font-size: 37px;
+    }
+
+    .Decoration::before, .Decoration::after {
+        content: "";
+        width: 150px !important;
+        height: 3px !important;
+        background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%) !important;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .BrowseContent{
+        margin-top: 17%;
+    }
+}
+
+@media (max-width: 430px) {
+    .Decoration::before, .Decoration::after {
+        content: "";
+        width: 100px !important;
+        height: 3px !important;
+        background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%) !important;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .SpiritSelection {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    
+
+    .SpiritCard {
+        width: 90%;
+        margin: 5px auto; 
+    }
+
+    .BrowseContent{
+        margin-top: 24%;
+    }
+}
+
+@media (max-width: 365px) {
+    .SpiritsHeader .SpiritsTitle, .BrowseTitle {
+        font-size: 30px;
+    }
+
+    .Decoration::before, .Decoration::after {
+        content: "";
+        width: 100px !important;
+        height: 3px !important;
+        background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%) !important;
+    }
+}
+
