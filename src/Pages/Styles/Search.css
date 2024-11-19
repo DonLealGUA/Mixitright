@@ -5,11 +5,13 @@
     min-height: 100vh; 
     display: flex;
     justify-content: center; 
-    align-items: center;
+    align-items: flex-start;  
+    padding: 10px;  
 }
 
 .SearchContent {
-    width: 92%; 
+    width: 100%;
+    max-width: 1200px;
     border-radius: 20px;
     display: flex;
     flex-direction: column; 
@@ -17,7 +19,6 @@
     margin: 3% 0;
     padding-bottom: 3%;
     border-radius: 20px;
-
 }
 
 .SpiritsHeader {
@@ -28,13 +29,15 @@
     background-color: #2E4A42;
     border-radius: 20px 20px 0 0;
     padding-bottom: 20px;
+    width: 100%;
 }
 
 .SpiritsTitle {
     font-family: 'Inria Serif', serif;
     color: #B68934;
-    font-size: 64px;
+    font-size: 3rem; 
     font-weight: bold;
+    text-align: center; 
 }
 
 .Decoration {
@@ -46,7 +49,7 @@
 .Decoration::before,
 .Decoration::after {
     content: "";
-    width: 200px; 
+    width: 150px; 
     height: 3px; 
     background: linear-gradient(-90deg, rgba(220, 178, 126, 1) 0%, rgba(156, 120, 64, 1) 100%); 
 }
@@ -65,4 +68,71 @@
 
 .BrowseContent {
     padding: 10px;
+    width: 100%;
+}
+
+@media (max-width: 1370px) {
+    .SearchContent{
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .SearchContent{
+        margin-top: 7%;
+    }
+}
+
+@media (max-width: 900px) {
+    .SpiritsTitle {
+        font-size: 2.5rem; 
+    }
+
+    .Decoration::before,
+    .Decoration::after {
+        width: 120px; 
+    }
+
+    .SearchContent {
+        padding: 10px; 
+    }
+}
+
+@media (max-width: 760px) {
+    .SearchContent{
+        margin-top: 9%;
+    }
+}
+
+@media (max-width: 600px) {
+    .SpiritsTitle {
+        font-size: 2rem; 
+    }
+
+    .Decoration::before,
+    .Decoration::after {
+        width: 100px; 
+    }
+
+    .Browse {
+        justify-content: flex-start; 
+    }
+}
+
+@media (max-width: 580px) {
+    .SearchContent{
+        margin-top: 13%;
+    }
+}
+
+@media (max-width: 460px) {
+    .SearchContent{
+        margin-top: 18%;
+    }
+}
+
+@media (max-width: 350px) {
+    .SearchContent{
+        margin-top: 24%;
+    }
 }

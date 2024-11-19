@@ -36,8 +36,8 @@ const Cocktail = () => {
   }, [cocktails]);
 
   return (
-    <div className="Browse">
-      <div className="Content">
+    <div className="CocktailBrowse">
+      <div className="CocktailContent">
         <div className="ImageCorner">
           <img src={cocktails[0]?.imageUrl} alt={cocktails[0]?.name} />
         </div>
