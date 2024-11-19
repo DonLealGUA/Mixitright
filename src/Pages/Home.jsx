@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./Styles/Home.css";
 import IngredientList from "../Components/IngredientList";
 
@@ -10,6 +10,7 @@ const Home = () => {
   const [ingredientType, setIngredientType] = useState("ingredient");
   const [ingredients, setIngredients] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [visibleSection, setVisibleSection] = useState("left");
 
   const navigate = useNavigate();
 
@@ -19,7 +20,10 @@ const Home = () => {
 
   const handleAddIngredient = () => {
     if (ingredientName.trim()) {
-      setIngredients([...ingredients, { name: ingredientName, type: ingredientType }]);
+      setIngredients([
+        ...ingredients,
+        { name: ingredientName, type: ingredientType },
+      ]);
       setIngredientName("");
       setIngredientType("ingredient");
       setErrorMessage("");
@@ -37,33 +41,48 @@ const Home = () => {
   const handleRandomCocktail = () => {
     setTimeout(() => {
       navigate("/cocktail/mojito");
-    }, 1000); 
+    }, 1000);
   };
 
   return (
     <div className="Home">
       <div className="HomeContent">
-        <div className="left">
+        <div className={`left ${visibleSection === "left" ? "active" : ""}`}>
           <h1 className="Title">Welcome to MixItRight</h1>
           <p className="TitleDesc">
             Browse our sortiment of over {cocktailTotalAmount} cocktail recipes.
           </p>
           <div className="ButtonContainer">
             <p className="ButtonText">Generate a random cocktail</p>
-            <button className="RandomCocktailButton" onClick={handleRandomCocktail}>
+            <button
+              className="RandomCocktailButton"
+              onClick={handleRandomCocktail}
+            >
               Feel lucky
             </button>
+            {visibleSection === "left" && (
+  <div className="center-content">
+    <p className="HiddenButtonText">Generate a random cocktail</p>
+    <button
+      className="big-center-button"
+      onClick={() => setVisibleSection("right")}
+    >
+      What Can I Make?
+    </button>
+  </div>
+)}
+
           </div>
         </div>
 
-        <div className="right">
+        <div className={`right ${visibleSection === "right" ? "active" : ""}`}>
           <div className="UserInputArea">
             <h2 className="InputAreaTitle">
               Make a cocktail with ingredients you have at home
             </h2>
             <div className="UserIngredientInput">
               <input
-                type="text"
+                type="Ingedienttext"
                 className="IngredientInput"
                 placeholder="Enter ingredient or spirit"
                 value={ingredientName}
@@ -78,15 +97,21 @@ const Home = () => {
                 <option value="ingredient">Ingredient</option>
                 <option value="spirit">Spirit</option>
               </select>
-              <button className="AddIngredientButton" onClick={handleAddIngredient}>
+              <button
+                className="AddIngredientButton"
+                onClick={handleAddIngredient}
+              >
                 Add
               </button>
             </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-
             <div className="UserChoiceContainer">
               <p>Include only EXACT ingredients?</p>
-              <label className={`choice-label ${selectedOption === "yes" ? "bigger-text" : ""}`}>
+              <label
+                className={`choice-label ${
+                  selectedOption === "yes" ? "bigger-text" : ""
+                }`}
+              >
                 <input
                   type="radio"
                   name="yesNo"
@@ -97,7 +122,11 @@ const Home = () => {
                 Yes
               </label>
               <span className="SpacewithSlash">/</span>
-              <label className={`choice-label ${selectedOption === "no" ? "bigger-text" : ""}`}>
+              <label
+                className={`choice-label ${
+                  selectedOption === "no" ? "bigger-text" : ""
+                }`}
+              >
                 <input
                   type="radio"
                   name="yesNo"
@@ -110,7 +139,10 @@ const Home = () => {
             </div>
 
             <div className="UserIngredientShowArea">
-              <IngredientList ingredients={ingredients} onDeleteIngredient={handleDeleteIngredient} />
+              <IngredientList
+                ingredients={ingredients}
+                onDeleteIngredient={handleDeleteIngredient}
+              />
             </div>
             <div className="UserInputButtonArea">
               <button className="UserIngredientsButton">Mix it Together</button>
@@ -118,6 +150,16 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {/* Back button (small, top-left) */}
+      {visibleSection === "right" && (
+        <button
+          className="small-back-button"
+          onClick={() => setVisibleSection("left")}
+        >
+          Back
+        </button>
+      )}
     </div>
   );
 };
