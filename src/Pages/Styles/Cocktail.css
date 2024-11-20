@@ -1,223 +1,285 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .Browse {
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    align-items: center;
-  }
-  
-  .Content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    width: 80%;
-    margin: 3% 0;
-    border-radius: 20px;
-    background-color: #F5F3E7;
-    padding-bottom: 50px;  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- 
-  }
-  
-  .ImageCorner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px;
-    padding-top: 30px;  
-  }
-  
-  .ImageCorner img {
-    width: 577px;
-    height: 536px;
-    border-radius: 20px;
-    object-fit: cover;
-    border: 2px solid #B68934;
-  }
-  
-  .RecepieInfo {
-    background-color: #F5F3E7; 
-    padding: 20px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: flex-start; 
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    position: relative; 
+.CocktailBrowse {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.CocktailContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  width: 80%;
+  margin: 3% 0;
+  border-radius: 20px;
+  background-color: #F5F3E7;
+  padding-bottom: 50px;
+  margin-top: 6%;
+  gap: 20px; 
+}
+
+.ImageCorner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+
+.ImageCorner img {
+  width: 100%;
+  max-width: 577px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 2px solid #B68934;
+}
+
+.RecepieInfo {
+  background-color: #F5F3E7;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+  grid-column: 2 / 3;
+  grid-row: 1;
 }
 
 .DisplayInfo {
-    background-color: #F5F3E7; 
-    padding: 20px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center; 
-    justify-content: center; 
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+  background-color: #F5F3E7;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
 }
 
 .SaveRecipeButton {
-    background-color: #8B1C1C; 
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: absolute;
-    top: 10px;  
-    right: 10px;  
-    z-index: 1; 
+  background-color: #8B1C1C;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
 }
 
-.SaveRecipeButton :hover {
+.SaveRecipeButton:hover {
   background-color: #74101c;
   transform: scale(1.01);
   box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
 }
 
 .CocktailName {
-    font-size: 5em;
-    font-weight: bold;
-    color: #4B4B4B;
-    text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #4B4B4B;
+  text-align: center;
 }
 
 .CocktailIngreidentAmount,
 .CocktailGlassType {
-    font-size: 1.2em;
-    color: #000000;
-    text-align: center; 
+  font-size: 1.2em;
+  color: #000000;
+  text-align: center;
 }
 
 .CocktailRelated h2 {
-    font-size: 1.5em;
-    color: #000000;
-    margin-bottom: 10px;
-    text-align: center; 
+  font-size: 1.2em;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .CategoryButtons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center; 
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .CategoryButton {
-    background-color: #2E4A42; 
-    color: #ffffff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+  background-color: #2E4A42;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
 }
 
 .CategoryButton:hover {
-    background-color: #355e52; 
+  background-color: #355e52;
 }
-  
-  .IngredientsContent,
-  .RecepieContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-  }
-  
-  .TitleContainer {
-    width: 80%;
-    background-color: #3C3C3C;
-    text-align: center;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    padding: 10px;
-  }
-  
-  .IngredientTitle,
-  .InstructionsTitle {
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-  }
-  
-  .RecipeConent {
-    width: 80%;
-    min-height: 90%;
-  }
-  
-  .InstructionsConent {
-    width: 80%;
-    background-color: #F5F3E7;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
-    min-height: 70%;
-    font-size: 20px;
-    padding: 10px;
-  }
-  
 
-  .CategoryButtons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+.IngredientsContent,
+.RecepieContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.TitleContainer {
+  width: 100%;
+  background-color: #3C3C3C;
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 10px;
+}
+
+.IngredientTitle,
+.InstructionsTitle {
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.RecipeConent {
+  width: 100%;
+  padding: 0 10%;
+}
+
+.InstructionsConent {
+  width: 100%;
+  background-color: #F5F3E7;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.RecommendedCocktails {
+  background-color: #F5F3E7;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 10%;
+  padding: 20px;
+}
+
+/* Responsiveness */
+
+@media (max-width: 1500px) {
+  .CocktailContent{
+    margin-top: 8%;
   }
-  
-  .CategoryButton {
-    background-color: #2E4A42;
-    color: #ffffff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+}
+
+@media (max-width: 1100px) {
+  .CocktailContent{
+    margin-top: 10%;
   }
-  
-  .CategoryButton:hover {
-    background-color: #355e52;
+}
+
+
+@media (max-width: 1024px) {
+  .CocktailContent {
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto auto; 
+  }
+
+  .ImageCorner {
+    grid-column: 1; 
+    grid-row: 2; 
+  }
+
+  .RecepieInfo {
+    grid-column: 1;
+    grid-row: 1; 
+  }
+}
+
+@media (max-width: 920px) {
+  .CocktailContent{
+    margin-top: 13%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .ImageCorner img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .CocktailName {
+    font-size: 1.8em;
   }
 
   .RecommendedCocktails {
-    background-color: #F5F3E7;
-    height: 50vh;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+    width: 90%;
+    padding: 10px;
+  }
+
+  .CocktailContent{
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 600px) {
+  .CocktailContent{
+    margin-top: 18%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .CocktailContent {
+    width: 90%;
+  }
+
+  .SaveRecipeButton {
+    font-size: 0.8em;
+    padding: 8px 15px;
+  }
+
+  .CocktailName {
     font-size: 1.5em;
-    text-align: center;
-    border-radius: 20px;
-    margin-bottom: 10%;
   }
-  
-  /* Responsiveness */
-  @media (max-width: 768px) {
-    .Content {
-      grid-template-columns: 1fr;
-    }
+
+  .CocktailContent{
+    margin-top: 24%;
   }
-  
+}
+
+@media (max-width: 360px) {
+  .CocktailContent{
+    margin-top: 28%;
+  }
+}
+
