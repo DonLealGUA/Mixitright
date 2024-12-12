@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./Styles/Home.css";
 import IngredientList from "../Components/IngredientList";
+import { fetchRandom, fetchCocktailAmount,fetchCocktailByExactIngredients,fetchCocktailByPartialIngredients } from "../API/APICalls"; 
 
 const Home = () => {
-  const cocktailTotalAmount = 100;
+  const [cocktailTotalAmount, setCocktailTotalAmount] = useState(0);  
   const [selectedOption, setSelectedOption] = useState("yes");
   const [ingredientName, setIngredientName] = useState("");
   const [ingredientType, setIngredientType] = useState("ingredient");
@@ -14,19 +15,38 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const getCocktailAmount = async () => {
+      try {
+        const amount = await fetchCocktailAmount(); 
+        setCocktailTotalAmount(amount || 0); 
+      } catch (error) {
+        console.error("Error fetching cocktail amount:", error);
+      }
+    };
+    getCocktailAmount();
+  }, []);  
+
   const handleRadioChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
   const handleAddIngredient = () => {
     if (ingredientName.trim()) {
-      setIngredients([
-        ...ingredients,
-        { name: ingredientName, type: ingredientType },
-      ]);
-      setIngredientName("");
-      setIngredientType("ingredient");
-      setErrorMessage("");
+      if (ingredientType === "ingredient") {
+        setIngredients((prevIngredients) => [
+          ...prevIngredients,
+          { name: ingredientName, type: "ingredient" },
+        ]);
+      } else if (ingredientType === "spirit") {
+        setIngredients((prevIngredients) => [
+          ...prevIngredients,
+          { name: ingredientName, type: "spirit" },
+        ]);
+      }
+      setIngredientName(""); 
+      setIngredientType("ingredient"); 
+      setErrorMessage(""); 
     } else {
       setErrorMessage("Please enter an ingredient or spirit.");
     }
@@ -38,12 +58,45 @@ const Home = () => {
     setIngredients(updatedIngredients);
   };
 
-  const handleRandomCocktail = () => {
-    setTimeout(() => {
-      navigate("/cocktail/mojito");
-    }, 1000);
+  const handleRandomCocktail = async () => {
+    try {
+      const cocktails = await fetchRandom(1); 
+      if (cocktails && cocktails.length > 0) {
+        const randomCocktail = cocktails[0]; 
+        const cocktailName = randomCocktail.name; 
+        navigate(`/cocktail/${cocktailName.toLowerCase()}`, { state: { cocktails: cocktails.data } });
+      } else {
+        console.error("No cocktails returned from fetchRandom.");
+      }
+    } catch (error) {
+      console.error("Error fetching random cocktail:", error);
+    }
   };
 
+  const handleMixIngredients = async () => {
+    const ingredientNames = ingredients.filter(item => item.type === "ingredient").map(item => item.name);
+    const spiritNames = ingredients.filter(item => item.type === "spirit").map(item => item.name);
+  
+    try {
+      let cocktails;
+  
+      if (selectedOption === "yes") {
+        cocktails = await fetchCocktailByExactIngredients(ingredientNames, spiritNames, 0);
+      } else {
+        cocktails = await fetchCocktailByPartialIngredients(ingredientNames, spiritNames, 0);
+      }
+  
+      if (cocktails && cocktails.length > 0) {
+        navigate('/search/homeingredients',  {state: { response: cocktails.data } });
+      } else {
+        console.error("No cocktails found.");
+        alert('No cocktails found');
+      }
+    } catch (error) {
+      console.error("Error fetching cocktails:", error);
+    }
+  };
+  
   return (
     <div className="Home">
       <div className="HomeContent">
@@ -52,6 +105,7 @@ const Home = () => {
           <p className="TitleDesc">
             Browse our sortiment of over {cocktailTotalAmount} cocktail recipes.
           </p>
+          <p className="NoteText">Note: The website's API is hosted on a free server, which may result in response times exceeding 50 seconds.</p>
           <div className="ButtonContainer">
             <p className="ButtonText">Generate a random cocktail</p>
             <button
@@ -61,17 +115,16 @@ const Home = () => {
               Feel lucky
             </button>
             {visibleSection === "left" && (
-  <div className="center-content">
-    <p className="HiddenButtonText">Generate a random cocktail</p>
-    <button
-      className="big-center-button"
-      onClick={() => setVisibleSection("right")}
-    >
-      What Can I Make?
-    </button>
-  </div>
-)}
-
+              <div className="center-content">
+                <p className="HiddenButtonText">Generate a random cocktail</p>
+                <button
+                  className="big-center-button"
+                  onClick={() => setVisibleSection("right")}
+                >
+                  What Can I Make?
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -87,6 +140,11 @@ const Home = () => {
                 placeholder="Enter ingredient or spirit"
                 value={ingredientName}
                 onChange={(e) => setIngredientName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setIngredientName(e.target.value);  
+                  }
+                }}
               />
               <select
                 className="ingredientSelect"
@@ -104,7 +162,6 @@ const Home = () => {
                 Add
               </button>
             </div>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
             <div className="UserChoiceContainer">
               <p>Include only EXACT ingredients?</p>
               <label
@@ -145,13 +202,17 @@ const Home = () => {
               />
             </div>
             <div className="UserInputButtonArea">
-              <button className="UserIngredientsButton">Mix it Together</button>
+            <button
+                className="UserIngredientsButton"
+                onClick={handleMixIngredients}
+              >
+                Mix it Together
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Back button (small, top-left) */}
       {visibleSection === "right" && (
         <button
           className="small-back-button"

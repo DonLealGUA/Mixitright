@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./Styles/Browse.css";
 import CocktailList from '../Components/CocktailList';
-import { fetchMockData } from "../API/mockApi"; 
+import { fetchCocktails, fetchCocktailBySpiritType, fetchCocktailByName } from "../API/APICalls";
+import Loader from "../Components/Loader";
 
 const Browse = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [Spirits, setSprit] = useState([
     { id: 1, name: "Vodka", img: "/Assets/SpiritIcons/Vodka.png" },
     { id: 2, name: "Rum", img: "/Assets/SpiritIcons/rum.png" },
@@ -15,25 +16,90 @@ const Browse = () => {
     { id: 6, name: "Cognac", img: "/Assets/SpiritIcons/cognac.png" },
   ]);
 
-  const [ingredients, setIngredients] = useState([]); 
+  const [ingredients, setIngredients] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0);  
+  const [totalPages, setTotalPages] = useState(1);  
 
   useEffect(() => {
-    const getMockData = async () => {
-      const mockData = await fetchMockData();
-      setIngredients(mockData.data); 
+    const getData = async () => {
+      const data = await fetchCocktails(currentPage);
+      setIngredients(data.data);
+      setTotalPages(data.totalPages);  
+      setLoading(false);
     };
 
-    getMockData();
-  }, []); 
+    getData();
+  }, [currentPage]); 
 
-  const handleSpiritClick = (spirit) => {
-    navigate(`/search/${spirit.name.toLowerCase()}`);
+  const handleSpiritClick = async (spirit) => {
+    try {
+      let response = null;
+      if(spirit.name == "Wine"){
+        response = await fetchCocktailBySpiritType("Red wine", 0);
+      }else if(spirit.name == "Tequila"){
+         response = await fetchCocktailBySpiritType("Blanco Tequila", 0);
+      }else if(spirit.name == "Rum"){
+         response = await fetchCocktailBySpiritType("Light Rum", 0);
+      }else{
+         response = await fetchCocktailBySpiritType(spirit.name.toLowerCase(), 0);
+      }
+     
+      if (response && response.data && response.data.length > 0) {
+        navigate(`/search/${spirit.name}`, { state: { response: response.data } });
+      } else {
+        alert('No cocktails found for this spirit');
+      }
+    } catch (error) {
+      console.error(error); 
+      alert('No cocktails found for this spirit');
+    }
+  };
+  
+
+  const handleCocktailClick = async (cocktailName) => {
+    try {
+      if (!cocktailName) {
+        throw new Error('Invalid cocktail name');
+      }
+
+      const formattedName = cocktailName.toLowerCase().replace(/\s+/g, '%20');
+
+      const response = await fetchCocktailByName(formattedName, 0);
+
+      if (!response || !response.data || response.data.length === 0) {
+        throw new Error('No cocktails found');
+      }
+      
+      navigate(`/cocktail/${formattedName}`, { state: { cocktails: response.data } });
+    } catch (error) {
+      console.error(error);
+      alert('No cocktails found for this spirit');
+    }
   };
 
-  const handleCocktailClick = (cocktailName) => {
-    setTimeout(() => {
-      navigate(`/cocktail/${cocktailName}`);
-    }, 1000);
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber >= 0 && pageNumber < totalPages) {
+      setCurrentPage(pageNumber); 
+    }
+  };
+
+  const renderPagination = () => {
+    if (totalPages <= 1) return null;
+
+    let pages = [];
+    for (let i = 0; i < totalPages; i++) {
+      pages.push(
+        <span
+          key={i}
+          className={`page-number ${i === currentPage ? "active" : ""}`}
+          onClick={() => handlePageChange(i)}
+        >
+          {i + 1}
+        </span>
+      );
+    }
+    return <div className="pagination">{pages}</div>;
   };
 
   return (
@@ -67,11 +133,18 @@ const Browse = () => {
           </div>
 
           <div className="BrowseContet">
-            <CocktailList
-              Cocktails={ingredients}
-              onCocktailClick={handleCocktailClick} 
-            />
+            {loading ? (
+              <Loader />
+            ) : (
+              <CocktailList
+                Cocktails={ingredients}
+                onCocktailClick={handleCocktailClick}
+              />
+            )}
           </div>
+
+          {/* Pagination */}
+          {renderPagination()}
         </div>
       </div>
     </div>

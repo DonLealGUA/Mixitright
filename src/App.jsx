@@ -35,7 +35,7 @@ function AppContent({ setCurrentPage, currentPage }) {
         <Route path="/" element={<Home setCurrentPage={setCurrentPage} />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/search/:item" element={<Search />} />
-        <Route path="/cocktail/:id" element={<Cocktail />} />
+        <Route path="/cocktail/:cocktailName" element={<Cocktail />} />
       </Routes>
       
       {location.pathname !== '/' && <Footer />}

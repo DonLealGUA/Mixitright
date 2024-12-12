@@ -211,6 +211,14 @@ User choice
   .UserChoiceContainer label:hover {
     color: #D4AF37;
   }
+
+  .NoteText{
+    font-size: 12px;
+    color: #F5F3E7;
+    margin-top: 10px;
+    width: 200px;
+    margin-bottom: -5%;
+  }
   
     /*
     User inputed text

@@ -1,37 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom"; 
 import CocktailList from "../Components/CocktailList";
 import { useNavigate } from "react-router-dom"; 
 import "./Styles/Search.css";
-import { fetchMockData } from "../API/mockApi"; 
 
 const Search = () => {
-  const { item } = useParams();
-  const navigate = useNavigate(); 
-
-  const [ingredients, setIngredients] = useState([]); 
+  const navigate = useNavigate();
+  const location = useLocation();  
+  const [cocktails, setCocktails] = useState([]); 
+  const [loading, setLoading] = useState(true);   
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   useEffect(() => {
-    const getMockData = async () => {
-      const mockData = await fetchMockData();
-      setIngredients(mockData.data); 
+    const fetchData = async () => {
+      setLoading(true);
+
+      if (location.state?.response) {
+        setCocktails(location.state.response);  
+        setSearchTerm(location.state.searchTerm || ""); 
+        setLoading(false);
+      } else {
+        setCocktails([]);
+        setLoading(false);
+      }
     };
 
-    getMockData();
-  }, []); 
+    fetchData();
+  }, [location.state?.response]); 
 
   const handleCocktailClick = (cocktailName) => {
-    setTimeout(() => {
-      navigate(`/cocktail/${cocktailName}`);
-    }, 1000); 
+    navigate(`/cocktail/${cocktailName}`);
   };
+
+  if (loading) {
+    return <p>Loading cocktails...</p>;
+  }
 
   return (
     <div className="Browse">
       <div className="SearchContent">
         <div className="UpperContent">
           <div className="SpiritsHeader">
-            <div className="SpiritsTitle">{item.substring(0).toLocaleUpperCase()}</div>
+            <div className="SpiritsTitle">Results for: {searchTerm}</div> 
             <div className="Decoration">
               <span className="circle"></span>
             </div>
@@ -40,10 +50,14 @@ const Search = () => {
 
         <div className="LowerContent">
           <div className="BrowseContent">
-          <CocktailList
-              Cocktails={ingredients}
-              onCocktailClick={handleCocktailClick} 
-            />
+            {cocktails.length > 0 ? (
+              <CocktailList
+                Cocktails={cocktails}
+                onCocktailClick={handleCocktailClick} 
+              />
+            ) : (
+              <p>No cocktails found for {searchTerm}. Try searching for something else.</p>
+            )}
           </div>
         </div>
       </div>

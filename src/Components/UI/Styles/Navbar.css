@@ -74,10 +74,18 @@ nav input::placeholder {
   transition: background-color 0.3s;
 }
 
+input[type="text"] {
+  width: 300px; 
+  color: #333;
+}
+
 .dropdown-container .category li button:hover {
   background-color: #333; 
 }
 
+.custom-spacing > *:not(:last-child) {
+  margin-right: 50px;
+}
 
 
 /* Desktop styles */
@@ -87,9 +95,10 @@ nav input::placeholder {
     width: 300px; 
   }
 
-  .mixitright-logo {
-    margin-left: 20%;
+  .custom-spacing > *:not(:last-child) {
+    margin-right: 30px;
   }
+
 }
 
 @media(max-width: 1020px) {
@@ -116,6 +125,14 @@ nav input::placeholder {
 
   .mixitright-logo {
     margin-left: 10%;
+  }
+
+  .navbar-desktop{
+    margin-left: 5%;
+  }
+
+  .custom-spacing > *:not(:last-child) {
+    margin-right: 20px;
   }
 
   input[type="text"] {
@@ -157,6 +174,7 @@ nav input::placeholder {
     justify-content: space-between; 
     align-items: center;
     width: 100%;
+    color: #333;
   }
 }
 
