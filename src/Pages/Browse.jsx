@@ -46,7 +46,7 @@ const Browse = () => {
       }
      
       if (response && response.data && response.data.length > 0) {
-        navigate(`/search/${spirit.name}`, { state: { response: response.data } });
+        navigate(`/search/${spirit.name}`, { state: { response: response.data, searchTerm: spirit.name } });
       } else {
         alert('No cocktails found for this spirit');
       }

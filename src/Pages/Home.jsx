@@ -76,6 +76,9 @@ const Home = () => {
   const handleMixIngredients = async () => {
     const ingredientNames = ingredients.filter(item => item.type === "ingredient").map(item => item.name);
     const spiritNames = ingredients.filter(item => item.type === "spirit").map(item => item.name);
+
+    console.log(ingredientNames);
+    console.log(spiritNames);
   
     try {
       let cocktails;
@@ -85,9 +88,11 @@ const Home = () => {
       } else {
         cocktails = await fetchCocktailByPartialIngredients(ingredientNames, spiritNames, 0);
       }
+
+      console.log(cocktails);
   
       if (cocktails && cocktails.length > 0) {
-        navigate('/search/homeingredients',  {state: { response: cocktails.data } });
+        navigate('/search/homeingredients',  {state: { response: cocktails.data, searchTerm: "Home ingredients"} });
       } else {
         console.error("No cocktails found.");
         alert('No cocktails found');

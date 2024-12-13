@@ -92,9 +92,9 @@ const Cocktail = () => {
       }
 
       if(category.type === "name"){
-        navigate(`/cocktail/${category.name}`, { state: { cocktails: response.data } });
+        navigate(`/cocktail/${category.name}`, { state: { cocktails: response.data} });
       }else{
-        navigate(`/search/${category.name}`,  {state: { response: response.data } });
+        navigate(`/search/${category.name}`,  {state: { response: response.data, searchTerm: category.name } });
       }
     
     } catch (error) {

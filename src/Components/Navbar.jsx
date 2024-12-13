@@ -74,7 +74,7 @@ const Navbar = ({ currentPage }) => {
   
       if (response && response.data && response.data.length > 0) {
         setCocktails(response.data); 
-        navigate(`/search/${encodeURIComponent(searchTerm)}`, {state: { response: response.data },});
+        navigate(`/search/${encodeURIComponent(searchTerm)}`, {state: { response: response.data, searchTerm: searchTerm },});
       } else {
         alert("No cocktails found for this selection");
       }
@@ -110,7 +110,7 @@ const Navbar = ({ currentPage }) => {
 
       if (cocktails && cocktails.length > 0) {
         setCocktails(cocktails);
-        navigate(`/search/${encodeURIComponent(item)}`, {state: { response: response.data },
+        navigate(`/search/${encodeURIComponent(item)}`, {state: { response: response.data, searchTerm: item },
         });
       } else {
         alert("No cocktails found for this selection");
@@ -164,7 +164,7 @@ const Navbar = ({ currentPage }) => {
               onClick={() => setDropdownOpen((prev) => !prev)}
               className="flex items-center transition-all duration-300 hover:opacity-80"
             >
-              Search
+              Category
               <span className="ml-1">
                 {isDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
               </span>
@@ -318,7 +318,7 @@ const Navbar = ({ currentPage }) => {
               onClick={() => setDropdownOpen((prev) => !prev)}
               className="flex items-center transition-all duration-300 hover:opacity-80"
             >
-              Search
+              Category
               <span className="ml-1">
                 {isDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
               </span>

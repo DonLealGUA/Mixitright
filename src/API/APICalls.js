@@ -158,19 +158,24 @@ export const fetchRandom = async (amount) => {
 
   export const fetchCocktailByExactIngredients = async (ingredients, spirits, currentPage) => {
     try {
+      
+        if (!ingredients || ingredients.length === 0) {
+            throw new Error('The "ingredients" parameter is required and cannot be empty.');
+        }
+
         const ingredientsQuery = ingredients
             .map(ingredient => `ingredients=${encodeURIComponent(ingredient)}`)
             .join('&');
 
-        const spiritsQuery = spirits.length > 0
+        const spiritsQuery = spirits && spirits.length > 0
             ? spirits
                 .map(spirit => `spirit_types=${encodeURIComponent(spirit)}`)
                 .join('&')
             : '';
 
-        const queryString = ingredientsQuery && spiritsQuery
+        const queryString = spiritsQuery
             ? `${ingredientsQuery}&${spiritsQuery}`
-            : ingredientsQuery || spiritsQuery;
+            : ingredientsQuery;
 
         const apiCall = `${apiUrl}ingredients/exact?${queryString}&page=${currentPage}&size=20`;
 
@@ -180,7 +185,7 @@ export const fetchRandom = async (amount) => {
         }
 
         const cocktails = await response.json();
-        
+
         if (!cocktails || !cocktails.data || cocktails.data.length === 0) {
             console.log('No cocktails found.');
             return null;
@@ -192,6 +197,7 @@ export const fetchRandom = async (amount) => {
         return null;
     }
 };
+
 
   
   export const fetchCocktailByPartialIngredients = async (ingredients, spirits, currentPage) => {

@@ -55,6 +55,11 @@
     transition: font-size 0.3s ease; 
 }
 
+.cocktail-name.long-name {
+    font-size: 1.2rem; 
+}
+
+
 .cocktail-box:hover .cocktail-name {
     white-space: normal;
     font-size: 1.2rem;
