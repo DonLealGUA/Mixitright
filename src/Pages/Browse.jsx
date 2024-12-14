@@ -8,11 +8,11 @@ import Loader from "../Components/Loader";
 const Browse = () => {
   const navigate = useNavigate();
   const [Spirits, setSprit] = useState([
-    { id: 1, name: "Vodka", img: "/Assets/SpiritIcons/Vodka.png" },
+    { id: 1, name: "Vodka", img: "/Assets/SpiritIcons/vodka.png" },
     { id: 2, name: "Rum", img: "/Assets/SpiritIcons/rum.png" },
     { id: 3, name: "Tequila", img: "/Assets/SpiritIcons/tequila.png" },
     { id: 4, name: "Gin", img: "/Assets/SpiritIcons/gin.png" },
-    { id: 5, name: "Wine", img: "/Assets/SpiritIcons/Wine-glass.png" },
+    { id: 5, name: "Wine", img: "/Assets/SpiritIcons/wine-glass.png" },
     { id: 6, name: "Cognac", img: "/Assets/SpiritIcons/cognac.png" },
   ]);
 
