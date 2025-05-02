@@ -110,7 +110,6 @@ const Home = () => {
           <p className="TitleDesc">
             Browse our sortiment of over {cocktailTotalAmount} cocktail recipes.
           </p>
-          <p className="NoteText">Note: The website's API is hosted on a free server, which may result in response times exceeding 50 seconds.</p>
           <div className="ButtonContainer">
             <p className="ButtonText">Generate a random cocktail</p>
             <button
