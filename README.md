@@ -21,13 +21,6 @@
 
 ---
 
-### **Important Note ⚠️**
-
-- **Hosted on a Free Server** ⏳  
-  Please note that the API is hosted on a free server. As a result, it may take **up to 50+ seconds** to return results. Your patience is appreciated!
-
----
-
 ### **Getting Started 🚀**
 
 1. **Clone this Repository**  
